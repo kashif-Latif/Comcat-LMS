@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("STUDENT") // ADMIN, TEACHER, STUDENT
+  phone     String?
+  address   String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Student specific
+  studentId       String?  @unique
+  department      String?
+  semester        Int?
+  enrollmentYear  Int?
+  dateOfBirth     DateTime?
+
+  // Teacher specific
+  teacherId    String?  @unique
+  designation  String?
+  qualification String?
+
+  // Relations
+  enrollments        Enrollment[]
+  attendanceStudent  AttendanceRecord[] @relation("StudentAttendance")
+  attendanceTeacher  AttendanceRecord[] @relation("TeacherAttendance")
+  fees               Fee[]
+  teacherSubjects    SubjectTeacher[]
+  announcements      Announcement[]
+
+  @@map("users")
+}
+
+model Subject {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  credits     Int      @default(3)
+  semester    Int?
+  department  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  enrollments        Enrollment[]
+  teachers           SubjectTeacher[]
+  attendanceRecords  AttendanceRecord[]
+
+  @@map("subjects")
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  studentId String
+  subjectId String
+  grade     String?
+  createdAt DateTime @default(now())
+
+  student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, subjectId])
+  @@map("enrollments")
+}
+
+model SubjectTeacher {
+  id        String   @id @default(cuid())
+  subjectId String
+  teacherId String
+  createdAt DateTime @default(now())
+
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  teacher User    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([subjectId, teacherId])
+  @@map("subject_teachers")
+}
+
+model AttendanceRecord {
+  id        String   @id @default(cuid())
+  studentId String
+  subjectId String
+  teacherId String
+  date      DateTime @default(now())
+  status    String   @default("PRESENT") // PRESENT, ABSENT, LATE
+  remarks   String?
+  createdAt DateTime @default(now())
+
+  student User    @relation("StudentAttendance", fields: [studentId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  teacher User    @relation("TeacherAttendance", fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, subjectId, date])
+  @@map("attendance_records")
+}
+
+model Fee {
+  id          String   @id @default(cuid())
+  studentId   String
+  semester    Int
+  amount      Float
+  status      String   @default("PENDING") // PENDING, PAID, PARTIAL, OVERDUE
+  paidAmount  Float    @default(0)
+  dueDate     DateTime?
+  paidDate    DateTime?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("fees")
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  category    String   @default("GENERAL") // GENERAL, ACADEMIC, EVENT, URGENT
+  authorId    String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("announcements")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
+
+model Admission {
+  id              String   @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String
+  phone           String
+  cnic            String?
+  dateOfBirth     String?
+  gender          String   @default("MALE")
+  address         String?
+  city            String?
+  program         String
+  previousDegree  String?
+  previousInstitution String?
+  previousGPA     String?
+  status          String   @default("PENDING") // PENDING, UNDER_REVIEW, ACCEPTED, REJECTED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("admissions")
+}

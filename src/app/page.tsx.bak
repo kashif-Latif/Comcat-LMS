@@ -1,0 +1,263 @@
+'use client'
+
+import { useEffect } from 'react'
+import { SessionProvider } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import { useAppStore } from '@/store/use-app-store'
+import { Navbar } from '@/components/layout/navbar'
+import { Footer } from '@/components/layout/footer'
+import { HeroSection } from '@/components/public/hero-section'
+import { AboutSection } from '@/components/public/about-section'
+import { NewsSection } from '@/components/public/news-section'
+import { ContactSection } from '@/components/public/contact-section'
+import { LoginForm } from '@/components/auth/login-form'
+import { AdminLayout } from '@/components/admin/admin-layout'
+import { AdminDashboard } from '@/components/admin/admin-dashboard'
+import { ManageStudents } from '@/components/admin/manage-students'
+import { ManageTeachers } from '@/components/admin/manage-teachers'
+import { ManageSubjects } from '@/components/admin/manage-subjects'
+import { ManageAnnouncements } from '@/components/admin/manage-announcements'
+import { ManageMessages } from '@/components/admin/manage-messages'
+import {
+  GraduationCap,
+  BookOpen,
+  Settings,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { TeacherLayout } from '@/components/teacher/teacher-layout'
+import { TeacherDashboard } from '@/components/teacher/teacher-dashboard'
+import { ViewStudents } from '@/components/teacher/view-students'
+import { MarkAttendance } from '@/components/teacher/mark-attendance'
+import { StudentLayout } from '@/components/student/student-layout'
+import { StudentDashboard } from '@/components/student/student-dashboard'
+import { MySubjects } from '@/components/student/my-subjects'
+import { MyAttendance } from '@/components/student/my-attendance'
+import { MyFees } from '@/components/student/my-fees'
+
+function PlaceholderView({
+  title,
+  description,
+  icon: Icon,
+  role,
+}: {
+  title: string
+  description: string
+  icon: React.ElementType
+  role: string
+}) {
+  const { setCurrentView, user } = useAppStore()
+
+  return (
+    <div className="flex min-h-[80vh] items-center justify-center px-4">
+      <div className="max-w-md text-center">
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-100">
+          <Icon className="h-10 w-10 text-emerald-600" />
+        </div>
+        <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+        <p className="mt-2 text-gray-500">{description}</p>
+
+        <div className="mt-6 rounded-xl border bg-gray-50 p-4">
+          <div className="text-sm text-gray-600">
+            <span className="font-medium text-gray-900">Role:</span>{' '}
+            <span className="ml-1 inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+              {role}
+            </span>
+          </div>
+          {user && (
+            <div className="mt-2 text-sm text-gray-600">
+              <span className="font-medium text-gray-900">User:</span>{' '}
+              {user.name} ({user.email})
+            </div>
+          )}
+        </div>
+
+        <div className="mt-6 flex justify-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentView('home')}
+          >
+            Back to Home
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              const logout = useAppStore.getState().logout
+              logout()
+            }}
+            className="text-red-600 hover:bg-red-50"
+          >
+            Logout
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function AdminContent() {
+  const { currentView } = useAppStore()
+
+  switch (currentView) {
+    case 'admin-dashboard':
+      return <AdminDashboard />
+    case 'admin-students':
+      return <ManageStudents />
+    case 'admin-teachers':
+      return <ManageTeachers />
+    case 'admin-subjects':
+      return <ManageSubjects />
+    case 'admin-announcements':
+      return <ManageAnnouncements />
+    case 'admin-messages':
+      return <ManageMessages />
+    default:
+      return <AdminDashboard />
+  }
+}
+
+function TeacherContent() {
+  const { currentView } = useAppStore()
+
+  switch (currentView) {
+    case 'teacher-dashboard':
+      return <TeacherDashboard />
+    case 'teacher-students':
+      return <ViewStudents />
+    case 'teacher-attendance':
+      return <MarkAttendance />
+    default:
+      return <TeacherDashboard />
+  }
+}
+
+function StudentContent() {
+  const { currentView } = useAppStore()
+
+  switch (currentView) {
+    case 'student-dashboard':
+      return <StudentDashboard />
+    case 'student-subjects':
+      return <MySubjects />
+    case 'student-attendance':
+      return <MyAttendance />
+    case 'student-fees':
+      return <MyFees />
+    default:
+      return <StudentDashboard />
+  }
+}
+
+function AppContent() {
+  const { currentView, user, setUser } = useAppStore()
+  const { data: session, status } = useSession()
+
+  // Sync session with store on mount and when session changes
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user) {
+      const userData = {
+        id: (session.user as Record<string, unknown>).id as string || '',
+        email: session.user.email || '',
+        name: session.user.name || '',
+        role: (session.user as Record<string, unknown>).role as string || 'STUDENT',
+      }
+      if (!user || user.id !== userData.id) {
+        setUser(userData)
+      }
+    }
+  }, [session, status, user, setUser])
+
+  const isAdminView = currentView.startsWith('admin-')
+  const isTeacherView = currentView.startsWith('teacher-')
+  const isStudentView = currentView.startsWith('student-')
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'home':
+        return (
+          <>
+            <HeroSection />
+            <AboutSection />
+            <NewsSection />
+            <ContactSection />
+          </>
+        )
+      case 'about':
+        return <AboutSection />
+      case 'news':
+        return <NewsSection />
+      case 'contact':
+        return <ContactSection />
+      case 'login':
+        return <LoginForm />
+
+      // Admin views - use AdminLayout wrapper
+      case 'admin-dashboard':
+      case 'admin-students':
+      case 'admin-teachers':
+      case 'admin-subjects':
+      case 'admin-announcements':
+      case 'admin-messages':
+        return (
+          <AdminLayout>
+            <AdminContent />
+          </AdminLayout>
+        )
+
+      // Teacher views - use TeacherLayout wrapper
+      case 'teacher-dashboard':
+      case 'teacher-students':
+      case 'teacher-attendance':
+        return (
+          <TeacherLayout>
+            <TeacherContent />
+          </TeacherLayout>
+        )
+
+      // Student views - use StudentLayout wrapper
+      case 'student-dashboard':
+      case 'student-subjects':
+      case 'student-attendance':
+      case 'student-fees':
+        return (
+          <StudentLayout>
+            <StudentContent />
+          </StudentLayout>
+        )
+
+      default:
+        return (
+          <>
+            <HeroSection />
+            <AboutSection />
+            <NewsSection />
+            <ContactSection />
+          </>
+        )
+    }
+  }
+
+  const isPublicView = ['home', 'about', 'news', 'contact', 'login'].includes(
+    currentView
+  )
+
+  // Admin, Teacher, and Student views use their own layout with sidebar
+  if (isAdminView || isTeacherView || isStudentView) {
+    return renderContent()
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <main className="flex-1">{renderContent()}</main>
+      {isPublicView && <Footer />}
+    </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <SessionProvider>
+      <AppContent />
+    </SessionProvider>
+  )
+}
