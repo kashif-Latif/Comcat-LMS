@@ -38,6 +38,7 @@
 The system supports full CRUD operations for student and teacher management, course enrollment, attendance tracking, fee management, announcements, admissions, and a public-facing website — all in a sleek dark **Sigma theme** with gold accents.
 
 **Designed & Developed by [Muhammad Kashif Latif](mailto:kashif.latif2004@gmail.com)**
+**Visit the website = https://comcatuni.space.z.ai**
 
 ---
 
