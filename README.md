@@ -1,182 +1,102 @@
+<p align="center">
+  <img src="public/logo.svg" alt="COMCAT University Logo" width="120" height="120" />
+</p>
 
-
-<h1 align="center">COMCAT University</h1>
+<h1 align="center">COMCAT University — Official Web Portal</h1>
 
 <p align="center">
-  <strong>Official University Management Web Portal</strong><br/>
-  A full-stack, role-based university management system built with Next.js, Prisma, and SQLite.
+  A modern, full-stack university management portal built with Next.js 16, Supabase, and Tailwind CSS.<br/>
+  Developed by <strong>Muhammad Kashif Latif</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js 16" />
-  <img src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white" alt="TypeScript 5" />
-  <img src="https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma&logoColor=white" alt="Prisma 6" />
-  <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite" />
-  <img src="https://img.shields.io/badge/NextAuth-4-1A1A1A?logo=next.js&logoColor=white" alt="NextAuth v4" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=black" alt="Tailwind CSS 4" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" />
-</p>
-
-<p align="center">
-  <a href="#-features">Features</a> •
-  <a href="#-demo-credentials">Demo Credentials</a> •
-  <a href="#-getting-started">Getting Started</a> •
-  <a href="#-project-structure">Project Structure</a> •
-  <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-backend-architecture">Backend Architecture</a> •
-  <a href="#-api-endpoints">API Endpoints</a> •
-  <a href="#-screenshots">Screenshots</a> •
-  <a href="#-license">License</a>
+  <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?logo=tailwind-css" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase" alt="Supabase" />
+  <img src="https://img.shields.io/badge/shadcn/ui-Components-black" alt="shadcn/ui" />
 </p>
 
 ---
 
-## About
+## Table of Contents
 
-**COMCAT University** is a comprehensive university management portal designed to handle all aspects of academic administration. It features role-based access for **Administrators**, **Teachers**, and **Students**, each with their own dedicated dashboard and functionality.
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Demo Credentials](#demo-credentials)
+- [API Routes](#api-routes)
+- [Database Schema](#database-schema)
+- [Deployment](#deployment)
+- [License](#license)
 
-The system supports full CRUD operations for student and teacher management, course enrollment, attendance tracking, fee management, announcements, admissions, and a public-facing website — all in a sleek dark **Sigma theme** with gold accents.
+---
 
-**Designed & Developed by [Muhammad Kashif Latif](mailto:kashif.latif2004@gmail.com)**
-**Visit the website = https://comcatuni.space.z.ai**
+## Overview
+
+COMCAT University Portal is a comprehensive web-based management system designed for universities. It provides three distinct role-based interfaces — **Admin**, **Teacher**, and **Student** — alongside a fully featured public-facing website with an AI-powered chatbot.
+
+The application is a single-page architecture built on Next.js 16 with the App Router, using Supabase (PostgreSQL) as the backend database via its REST API (PostgREST). Authentication is handled by NextAuth.js v4.
 
 ---
 
 ## Features
 
-### 🏠 Public Website
-- Responsive hero section with animated statistics
-- Quick navigation grid with 6 section cards
-- About page with mission, vision, and values
-- 6 academic programs (BS CS, BS IT, BS DS, BS SE, BS Cyber Security, BS AI)
-- University history timeline (2010–2024)
-- News & announcements with category filtering
-- Multi-step admissions application form with validation
-- Contact form with real contact information
+### Public Website
+- Hero section with campus imagery
+- Programs & departments showcase
+- University history timeline
+- News & announcements feed
+- Online admission inquiry form
+- Contact form with email support
+- AI-powered chatbot (GPT-based)
 
-### 🔴 Admin Portal
-- Dashboard with statistics overview and quick actions
-- **Manage Students** — Full CRUD with search, filter, and department assignment
-- **Manage Teachers** — Full CRUD with designation and qualification fields
-- **Manage Subjects** — Full CRUD with teacher-subject assignment
-- **Manage Announcements** — Create, edit, publish/unpublish announcements
-- **Manage Messages** — View and mark contact messages as read
+### Admin Portal
+- Dashboard with statistics (students, teachers, subjects, announcements, unread messages)
+- Student management (create, view, edit, delete)
+- Teacher management (create, view, edit, delete)
+- Subject management (CRUD with teacher assignment)
+- Announcement management (create, edit, delete)
+- Admission inquiry review and status management
+- Contact message inbox
 
-### 🔵 Teacher Portal
-- Personal dashboard with profile and assigned subjects
-- **View Students** — Students grouped by subject with search
-- **Mark Attendance** — 3-step workflow: select date → select subject → mark students
+### Teacher Portal
+- Personal dashboard with assigned subjects and student counts
+- View enrolled students per subject
+- Mark daily attendance (present / absent)
 
-### 🟢 Student Portal
-- Dashboard with profile, enrollment stats, and progress bar
-- **My Subjects** — Enrolled subjects with search and detail dialog
-- **My Attendance** — Attendance history with filters and percentage calculation
-- **My Fees** — Fee records with downloadable challan/receipt
+### Student Portal
+- Personal dashboard with GPA, enrolled subjects, and attendance overview
+- View enrolled subjects with teacher details and credit hours
+- View attendance history with percentage breakdown
+- View fee records and payment status
 
-### 🎨 Design & UX
-- **Sigma Dark Theme** — Black (#0a0a0a), Dark Grey (#111), Gold (#C9A84C)
-- Fully responsive (mobile-first)
-- Framer Motion scroll-triggered animations
-- shadcn/ui component library
-- Accessible and keyboard-navigable
-
----
-
-## Demo Credentials
-
-| Role | Name | Email | Password |
-|------|------|-------|----------|
-| 🔴 Admin | Muhammad Kashif Latif | `admin@comcat.edu.pk` | `admin123` |
-| 🔵 Teacher | Prof. Qasim Ali | `prof.qasim@comcat.edu.pk` | `teacher123` |
-| 🟢 Student | Ahmed Khan | `ahmed.khan@student.comcat.edu.pk` | `student123` |
-
-### All Teacher Accounts (10)
-
-| # | Name | Email | Department |
-|---|------|-------|------------|
-| 1 | Prof. Qasim Ali | `prof.qasim@comcat.edu.pk` | Computer Science |
-| 2 | Dr. Sarah Ahmed | `dr.sarah@comcat.edu.pk` | Information Technology |
-| 3 | Prof. Bilal Hassan | `prof.bilal@comcat.edu.pk` | Data Science |
-| 4 | Dr. Aiman Fatima | `dr.aiman@comcat.edu.pk` | Software Engineering |
-| 5 | Prof. Kamran Raza | `prof.kamran@comcat.edu.pk` | Computer Science |
-| 6 | Dr. Nida Hussain | `dr.nida@comcat.edu.pk` | Cyber Security |
-| 7 | Prof. Imran Ashraf | `prof.imran@comcat.edu.pk` | Mathematics |
-| 8 | Dr. Sobia Kiran | `dr.sobia@comcat.edu.pk` | Information Technology |
-| 9 | Prof. Talha Mahmood | `prof.talha@comcat.edu.pk` | Computer Science |
-| 10 | Dr. Zunaira Noor | `dr.zunaira@comcat.edu.pk` | Data Science |
-
-> All teacher accounts share the same password: `teacher123`
+### Cross-Platform
+- Fully responsive design (mobile-first)
+- Dark "Sigma" theme with gold accents
+- State management via Zustand
+- Toast notifications via Sonner
 
 ---
 
-## Getting Started
+## Tech Stack
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) 18+ (LTS recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js) or [Bun](https://bun.sh/)
-- [Git](https://git-scm.com/)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/comcat-university.git
-cd comcat-university
-
-# 2. Install dependencies
-npm install
-# or: bun install
-
-# 3. Create environment file
-cp .env.example .env
-# Edit .env and set your NEXTAUTH_SECRET
-```
-
-### Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-DATABASE_URL=file:./db/custom.db
-NEXTAUTH_SECRET=your-secret-key-here
-```
-
-> Generate a secure secret: `openssl rand -base64 32`
-
-### Database Setup
-
-```bash
-# Generate Prisma client
-npx prisma generate
-
-# Create database tables
-npx prisma db push
-
-# Seed with demo data (admin, teachers, students, subjects, etc.)
-npx prisma db seed
-```
-
-### Run the Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server on port 3000 |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npx prisma generate` | Generate Prisma Client |
-| `npx prisma db push` | Push schema to database |
-| `npx prisma db seed` | Seed database with demo data |
-| `npx prisma studio` | Open Prisma Studio (visual DB browser) |
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS 4 + shadcn/ui |
+| **Database** | Supabase (PostgreSQL) via REST API |
+| **Authentication** | NextAuth.js v4 |
+| **State Management** | Zustand |
+| **Server State** | TanStack Query |
+| **Icons** | Lucide React |
+| **Forms** | React Hook Form + Zod |
+| **Animations** | Framer Motion |
+| **AI Chatbot** | z-ai-web-dev-sdk (GPT) |
 
 ---
 
@@ -184,327 +104,218 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```
 comcat-university/
-├── prisma/
-│   ├── schema.prisma              # Database schema (9 models)
-│   └── seed.ts                    # Database seeding script
-│
-├── db/
-│   └── custom.db                  # SQLite database file
-│
-├── public/
-│   ├── logo.svg                   # COMCAT University logo
-│   ├── hero-campus.jpg            # Hero background image
-│   └── robots.txt                 # SEO robots configuration
-│
+├── public/                      # Static assets
+│   ├── logo.svg
+│   ├── hero-campus.jpg
+│   └── robots.txt
+├── prisma/                      # Legacy Prisma schema (migrated to Supabase)
+│   ├── schema.prisma
+│   └── seed.ts
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx               # Main SPA entry (single route)
-│   │   ├── layout.tsx             # Root layout with metadata
-│   │   ├── globals.css            # Sigma dark theme styles
-│   │   └── api/
-│   │       ├── auth/[...nextauth]/route.ts   # NextAuth handler
-│   │       ├── admissions/route.ts
-│   │       ├── announcements/route.ts
-│   │       ├── attendance/route.ts
-│   │       ├── contact/route.ts
-│   │       ├── dashboard/route.ts
-│   │       ├── enrollments/route.ts
-│   │       ├── fees/route.ts
-│   │       ├── students/route.ts
-│   │       ├── subject-teachers/route.ts
-│   │       ├── subjects/route.ts
-│   │       └── teachers/route.ts
-│   │
+│   │   ├── api/                 # API routes (14 endpoints)
+│   │   │   ├── auth/[...nextauth]/route.ts
+│   │   │   ├── dashboard/route.ts
+│   │   │   ├── students/route.ts
+│   │   │   ├── teachers/route.ts
+│   │   │   ├── subjects/route.ts
+│   │   │   ├── enrollments/route.ts
+│   │   │   ├── attendance/route.ts
+│   │   │   ├── fees/route.ts
+│   │   │   ├── admissions/route.ts
+│   │   │   ├── announcements/route.ts
+│   │   │   ├── contact/route.ts
+│   │   │   ├── subject-teachers/route.ts
+│   │   │   ├── ai-chat/route.ts
+│   │   │   └── route.ts
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx             # Single-page app entry
 │   ├── components/
-│   │   ├── public/                # Public website sections
-│   │   │   ├── hero-section.tsx
-│   │   │   ├── homepage-grid.tsx
-│   │   │   ├── about-section.tsx
-│   │   │   ├── programs-section.tsx
-│   │   │   ├── history-section.tsx
-│   │   │   ├── news-section.tsx
-│   │   │   ├── admissions-section.tsx
-│   │   │   └── contact-section.tsx
-│   │   ├── admin/                 # Admin portal components
-│   │   │   ├── admin-layout.tsx
-│   │   │   ├── admin-dashboard.tsx
-│   │   │   ├── manage-students.tsx
-│   │   │   ├── manage-teachers.tsx
-│   │   │   ├── manage-subjects.tsx
-│   │   │   ├── manage-announcements.tsx
-│   │   │   └── manage-messages.tsx
-│   │   ├── teacher/               # Teacher portal components
-│   │   │   ├── teacher-layout.tsx
-│   │   │   ├── teacher-dashboard.tsx
-│   │   │   ├── view-students.tsx
-│   │   │   └── mark-attendance.tsx
-│   │   ├── student/               # Student portal components
-│   │   │   ├── student-layout.tsx
-│   │   │   ├── student-dashboard.tsx
-│   │   │   ├── my-subjects.tsx
-│   │   │   ├── my-attendance.tsx
-│   │   │   └── my-fees.tsx
-│   │   ├── auth/
-│   │   │   └── login-form.tsx     # Login form with demo credentials
-│   │   ├── layout/
-│   │   │   ├── navbar.tsx         # Navigation bar
-│   │   │   └── footer.tsx         # Site footer
-│   │   └── ui/                    # shadcn/ui components
-│   │
-│   ├── lib/
-│   │   ├── auth.ts                # NextAuth configuration
-│   │   ├── db.ts                  # Prisma database client
-│   │   └── utils.ts               # Utility functions (cn, etc.)
-│   │
-│   ├── store/
-│   │   └── use-app-store.ts       # Zustand state management
-│   │
-│   └── types/
-│       └── next-auth.d.ts         # NextAuth TypeScript extensions
-│
-├── download/
-│   ├── README.md
-│   └── LOCAL-SETUP-GUIDE.md       # Detailed setup guide
-│
-├── .env                           # Environment variables (not committed)
-├── .gitignore
+│   │   ├── admin/               # Admin portal components (7)
+│   │   ├── teacher/             # Teacher portal components (4)
+│   │   ├── student/             # Student portal components (5)
+│   │   ├── public/              # Public website sections (8)
+│   │   ├── auth/                # Login form
+│   │   ├── layout/              # Navbar, Footer
+│   │   ├── ui/                  # shadcn/ui components (50+)
+│   │   └── ai-chat-widget.tsx   # Floating AI chatbot
+│   ├── hooks/                   # Custom React hooks
+│   ├── lib/                     # Utilities (supabase, auth, utils)
+│   ├── store/                   # Zustand stores
+│   └── types/                   # TypeScript type definitions
+├── .env.local.example
 ├── package.json
-├── tailwind.config.ts
 ├── tsconfig.json
-├── eslint.config.mjs
-├── postcss.config.mjs
-├── components.json                # shadcn/ui configuration
-└── README.md                      # This file
+├── next.config.ts
+├── tailwind.config.ts
+└── README.md
 ```
 
 ---
 
-## Backend Architecture
+## Getting Started
 
-### Database Layer — SQLite via Prisma ORM
+### Prerequisites
 
-- **Engine:** SQLite (zero-config, file-based)
-- **Location:** `db/custom.db`
-- **ORM:** Prisma Client 6.x
-- **Schema:** 9 models defined in `prisma/schema.prisma`
+- **Node.js** >= 18
+- **npm**, **yarn**, or **bun**
+- A **Supabase** project (or any PostgreSQL database with a REST API layer)
 
-**Data Models:**
+### Installation
 
-```
-User (ADMIN / TEACHER / STUDENT)
-├── studentId, department, semester          → for STUDENT
-├── teacherId, designation, qualification    → for TEACHER
-├── enrollments         → Enrollment[]
-├── attendanceStudent   → AttendanceRecord[]
-├── attendanceTeacher   → AttendanceRecord[]
-├── fees                → Fee[]
-├── teacherSubjects     → SubjectTeacher[]
-└── announcements       → Announcement[]
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/kashif-Latif/comcat-university.git
+   cd comcat-university
+   ```
 
-Subject ─────────────── Enrollment ────────── AttendanceRecord
-├── code (unique)       studentId + subjectId    studentId + subjectId + date
-├── name                (unique pair)            (unique triple)
-├── credits, semester
-├── department
-└── teachers → SubjectTeacher[]
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Fee                         Announcement              ContactMessage
-├── studentId (FK)          ├── title                ├── name
-├── semester, amount        ├── content              ├── email
-├── status (PAID/PENDING)   ├── category             ├── subject
-└── paidAmount, dueDate     └── authorId (FK)        └── message
+3. **Set up environment variables**
 
-Admission (standalone application form)
-├── firstName, lastName, email, phone, cnic
-├── program, previousDegree, previousGPA
-└── status (PENDING/UNDER_REVIEW/ACCEPTED/REJECTED)
-```
+   Create a `.env.local` file in the project root (see [Environment Variables](#environment-variables) below).
 
-### Authentication — NextAuth.js v4
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-```
-┌──────────┐     ┌──────────────────┐     ┌──────────┐
-│  Browser  │────▶│  /api/auth/...   │────▶│  SQLite   │
-│ (Client)  │     │  CredentialsProv │     │  users    │
-└──────────┘     └──────────────────┘     └──────────┘
-      │                   │
-      │  1. POST email    │
-      │     + password    │
-      │  ◀────────────────│
-      │  2. Validate with │
-      │     bcrypt.compare │
-      │  ◀────────────────│
-      │  3. Return JWT    │
-      │     (id, role)    │
-      │                   │
-      │  4. Cookie stored │
-      │     in browser    │
-      └───────────────────┘
-```
+5. **Open in browser**
+   Navigate to `http://localhost:3000`
 
-- **Strategy:** JWT (stateless, no server-side session store)
-- **Provider:** Credentials (email + password)
-- **Password Hashing:** bcryptjs (12 salt rounds)
-- **JWT Payload:** `{ id, role, email, name, iat, exp }`
-- **Session Callback:** Extracts `id` and `role` from JWT into `session.user`
-- **Config:** `src/lib/auth.ts` | **Route:** `src/app/api/auth/[...nextauth]/route.ts`
-
-### State Management — Zustand
-
-- **Store:** `src/store/use-app-store.ts`
-- SPA-style view switching via `currentView` state
-- Auth state synced from NextAuth session via `useEffect`
-- Views: `home`, `login`, `about`, `news`, `contact`, `programs`, `history`, `admissions`, `admin-*`, `teacher-*`, `student-*`
-
-### Seed Data Summary
-
-| Data Type | Count |
-|-----------|-------|
-| Admin | 1 |
-| Teachers | 10 |
-| Students | 35 |
-| Subjects | 12 |
-| Enrollments | 76+ |
-| Attendance Records | 1,140+ |
-| Fee Records | 73 |
-| Announcements | 7 |
-| Contact Messages | 5 |
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET/POST | `/api/auth/[...nextauth]` | Authentication (login, session, logout) | Public |
-| GET/POST | `/api/admissions` | Admission applications | Public |
-| GET/POST | `/api/contact` | Contact messages | Public |
-| GET | `/api/dashboard` | Dashboard statistics | Admin |
-| GET/POST | `/api/students` | Student CRUD | Admin |
-| GET/POST | `/api/teachers` | Teacher CRUD | Admin |
-| GET/POST | `/api/subjects` | Subject CRUD | Admin |
-| GET/POST | `/api/subject-teachers` | Teacher-subject assignments | Admin |
-| GET/POST/PUT/DELETE | `/api/announcements` | Announcements | Admin |
-| GET/PUT | `/api/attendance` | Attendance records | Teacher/Student |
-| GET/POST | `/api/enrollments` | Course enrollments | Admin |
-| GET/POST/PUT | `/api/fees` | Fee records | Admin/Student |
-
----
-
-## Tech Stack
-
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **Next.js** | 16 | React framework with App Router |
-| **React** | 19 | UI library |
-| **TypeScript** | 5 | Type-safe development |
-| **Tailwind CSS** | 4 | Utility-first CSS framework |
-| **shadcn/ui** | — | Accessible UI component library |
-| **Prisma ORM** | 6 | Type-safe database ORM |
-| **SQLite** | — | Lightweight file-based database |
-| **NextAuth.js** | 4 | Authentication (JWT strategy) |
-| **Zustand** | 5 | Client-side state management |
-| **Framer Motion** | 12 | Animations and transitions |
-| **React Hook Form** | 7 | Form state management |
-| **Zod** | 4 | Schema validation |
-| **Recharts** | 2 | Charts and data visualization |
-| **Lucide React** | — | Icon library |
-| **bcryptjs** | 3 | Password hashing |
-| **date-fns** | 4 | Date utility functions |
-
----
-
-## Screenshots
-
-> Placeholder — add screenshots after deploying
-
-| Public Homepage | Admin Dashboard | Teacher Portal | Student Portal |
-|:---:|:---:|:---:|:---:|
-| *[Screenshot]* | *[Screenshot]* | *[Screenshot]* | *[Screenshot]* |
-
----
-
-## Troubleshooting
-
-<details>
-<summary><strong>Database not found or corrupted</strong></summary>
+### Build for Production
 
 ```bash
-rm -f db/custom.db
-npx prisma db push
-npx prisma db seed
+npm run build
+npm start
 ```
-</details>
 
-<details>
-<summary><strong>Login fails with "Invalid email or password"</strong></summary>
+---
 
-```bash
-# Re-seed the database
-npx prisma db seed
+## Environment Variables
 
-# Verify NEXTAUTH_SECRET is set
-echo $NEXTAUTH_SECRET
+Create a `.env.local` file in the root of the project:
 
-# Clear Next.js cache
-rm -rf .next
-npm run dev
+```env
+# ─── Supabase ───────────────────────────────────────────
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+# ─── NextAuth ───────────────────────────────────────────
+NEXTAUTH_SECRET=your-nextauth-secret
+NEXTAUTH_URL=http://localhost:3000
+
+# ─── Nodemailer (Contact Form) ──────────────────────────
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+CONTACT_EMAIL=your-email@gmail.com
+
+# ─── AI Chat (z-ai-web-dev-sdk) ────────────────────────
+AI_API_KEY=your-ai-api-key
 ```
-</details>
 
-<details>
-<summary><strong>Port 3000 already in use</strong></summary>
+> **Note:** Replace placeholder values with your actual credentials. Never commit `.env.local` to version control.
 
-```bash
-lsof -t -i:3000 | xargs kill -9
-npm run dev
+---
+
+## Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | admin@comcat.edu.pk | Admin@123456 |
+| **Teacher** | prof.qasim@comcat.edu.pk | Teacher@123456 |
+| **Student** | hassan.ali@student.comcat.edu.pk | Student@123456 |
+
+---
+
+## API Routes
+
+All routes are prefixed with `/api/` and use standard HTTP methods.
+
+| Endpoint | Methods | Description |
+|----------|---------|-------------|
+| `/api/auth/[...nextauth]` | POST, GET | NextAuth authentication |
+| `/api/dashboard` | GET | Dashboard statistics |
+| `/api/students` | GET, POST, PATCH, DELETE | Student CRUD |
+| `/api/teachers` | GET, POST, PATCH, DELETE | Teacher CRUD |
+| `/api/subjects` | GET, POST, PATCH, DELETE | Subject CRUD |
+| `/api/enrollments` | GET, POST, DELETE | Student-subject enrollments |
+| `/api/attendance` | GET, POST | Attendance records |
+| `/api/fees` | GET, POST, PATCH | Fee management |
+| `/api/admissions` | GET, POST, PATCH | Admission inquiries |
+| `/api/announcements` | GET, POST, PATCH, DELETE | Announcements CRUD |
+| `/api/contact` | GET, POST | Contact form messages |
+| `/api/subject-teachers` | GET | Subject-teacher mappings |
+| `/api/ai-chat` | POST | AI chatbot endpoint |
+
+---
+
+## Database Schema
+
+The application uses Supabase (PostgreSQL). Key tables include:
+
+| Table | Description |
+|-------|-------------|
+| `users` | All users with roles (ADMIN, TEACHER, STUDENT) |
+| `teachers` | Teacher profiles linked to users |
+| `subjects` | Course/subject catalog with credit hours |
+| `enrollments` | Student-subject enrollment mappings |
+| `attendance_records` | Daily attendance (present/absent) |
+| `fees` | Student fee records and payment status |
+| `admissions` | Admission inquiry submissions |
+| `announcements` | University announcements |
+| `contact_messages` | Contact form submissions |
+
+---
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import the repository in [Vercel](https://vercel.com)
+3. Add all environment variables in the Vercel dashboard
+4. Deploy
+
+### Docker (Alternative)
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
 ```
-</details>
 
-<details>
-<summary><strong>Module not found errors</strong></summary>
+### Any Node.js Host
 
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-</details>
-
-<details>
-<summary><strong>TypeScript errors with session.user.role</strong></summary>
-
-Make sure `src/types/next-auth.d.ts` exists. It extends NextAuth types to include `role` and `id` fields. Restart your IDE after confirming the file exists.
-</details>
+The project builds to a standalone server in `.next/standalone/`. Ensure all environment variables are set on the host.
 
 ---
 
 ## Contributing
 
+Contributions are welcome. Please follow these steps:
+
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is proprietary software developed for COMCAT University. All rights reserved.
 
----
-
-## Contact
-
-**Muhammad Kashif Latif** — Project Founder & Developer
-
-- 📧 [kashif.latif2004@gmail.com](mailto:kashif.latif2004@gmail.com)
-- 📍 345# Hamdard Chowk, near Arfa Tower, Lahore, Pakistan
-- 📞 +92 314 4253900
-
----
-
-<p align="center">
-  Built with ❤️ by <strong>Muhammad Kashif Latif</strong><br/>
-  <em>COMCAT University — Shaping the Future of Technology Leaders</em>
-</p>
+&copy; 2025 COMCAT University. Developed by Muhammad Kashif Latif.
